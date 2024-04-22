@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node",
+        "config": { "maxLambdaSize": "50mb" },
+        "functions": { "api/**/*": { "memory": 512 } },
+        "env": {
+          "DATABASE_URL": "file:./dev.db"
+        },
+        "hooks": {
+          "build": {
+            "before": "prisma generate"
+          }
+        }
+      }
+    ]
+  }
+  
